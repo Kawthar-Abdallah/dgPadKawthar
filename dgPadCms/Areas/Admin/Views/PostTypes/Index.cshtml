@@ -1,0 +1,44 @@
+﻿@model IEnumerable<dgPadCms.Models.PostType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="tb" style="width:800px;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                <Center>
+      <a asp-action="Edit" asp-route-id="@item.PostTypeId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PostTypeId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PostTypeId">Delete</a>
+                </Center>
+          
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

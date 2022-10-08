@@ -1,0 +1,78 @@
+﻿@model dgPadCms.Models.Post
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+
+<div class="row">
+    <div class="tb col-md-10">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input hidden asp-for="PostId" />
+            <input hidden asp-for="Image" />
+            <div class="form-group">
+                <label asp-for="PostTypeId" class="control-label">Post Type:</label>
+                <span class="form-control">@ViewBag.PostType.Title</span>
+                <input asp-for="PostTypeId" type="hidden" value="@ViewBag.PostType.PostTypeId" />
+            </div>
+                     <div class="form-group">
+                <label class="control-label">Terms</label>
+                <select name="termIdList" class="form-control multipleSelect" multiple>
+                    @foreach (var i in ViewBag.Terms)
+                    {
+                        <option value="@i.TermId">@i.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostTitle" class="control-label"></label>
+                <input asp-for="PostTitle" class="form-control" />
+                <span asp-validation-for="PostTitle" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="Details" class="control-label"></label>
+                <textarea asp-for="Details" class="form-control"></textarea>
+                <span asp-validation-for="Details" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Summary" class="control-label"></label>
+                <textarea asp-for="Summary" class="form-control"></textarea>
+                <span asp-validation-for="Summary" class="text-danger"></span>
+            </div>
+            <div class="form-group pd-2">
+                    <label asp-for="Image" class="control-label"> Image</label>
+                    <input asp-for="ImageUpload" class="form-control" />
+                    <img src="" id="imgPreview" class="pt-2" alt="" />
+                    <span asp-validation-for="ImageUpload" class="text-danger"></span>
+                </div>
+
+     
+            <script>
+                $('.multipleSelect').fastselect();
+            </script>
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+    @section MultiSelect{
+   
+    <link rel="stylesheet" href="~/lib/MultiSelect/fastselect.css">
+    <script src="~/lib/MultiSelect/fastselect.js"></script>
+}
+    <script>
+        $("#ImageUpload").change(function () {
+            readURL(this);
+        });
+    </script>
+

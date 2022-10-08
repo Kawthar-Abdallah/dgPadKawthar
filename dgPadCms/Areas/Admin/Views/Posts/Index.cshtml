@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Post>
+
+@{
+    ViewData["Title"] = "Post";
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="container">
+
+<table class="tb" style="width:800px;" >
+    
+    <thead>
+        <tr>
+            <th>
+                PostTitle
+            </th>
+      
+            <th>
+                Image
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostTitle)
+            </td>
+     
+            <td>
+                <img src="~/media/posts/@item.Image" width="100px" />
+            </td>
+            
+            <td>
+                <center>
+ <a asp-action="Edit" asp-route-postId="@item.PostId" asp-route-postTypeId="@item.PostType.PostTypeId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PostId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PostId">Delete</a>
+                </center>
+               
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>

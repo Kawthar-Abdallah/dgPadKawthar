@@ -1,0 +1,34 @@
+﻿@model Post
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<main id="main">
+    <section class="single-post-content">
+        <div class="container">
+            <div class="tb" style="width:800px;">
+                <div class="col-md-9 post-content" data-aos="fade-up">
+                    <div class="single-post">
+                        <div class="post-meta">
+                            <span class="date">@ViewBag.PostType.Title.ToUpper()</span>
+                            <span class="mx-1">&bullet;</span> <span>@Model.CreationDate</span>
+                        </div>
+                        <h1 class="mb-5">
+                            @Model.PostTitle
+                        </h1>
+                        @Html.Raw(Model.Details)
+
+                        <figure class="my-4">
+                            <img src="~/media/posts/@Model.Image"
+                                 alt=""
+                                 class="img-fluid" />
+                        </figure>
+                        @Html.Raw(Model.Summary)
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

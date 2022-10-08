@@ -1,0 +1,46 @@
+﻿@model IEnumerable<dgPadCms.Models.Term>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="tb" style="width:800px;">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Code
+            </th>
+            <th>
+                Taxonomy
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Code
+            </td>
+            <td>
+                @item.Taxonomy.Name
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TermId">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.TermId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

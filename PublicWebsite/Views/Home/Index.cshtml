@@ -1,0 +1,70 @@
+﻿@using dgPadCms.Models
+@model IEnumerable<dgPadCms.Models.Post>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+    
+
+    <div class=" d-flex justify-content-center " data-aos="fade-down"
+         data-aos-anchor-placement="center-center" style="margin-bottom:2%">
+
+
+    </div>
+
+
+
+
+<section id="events" class="events">
+    <div class="container-fluid" data-aos="fade-up">
+
+        <div class="section-header">
+            <h2>News</h2>
+           
+        </div>
+
+        <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper-wrapper">
+                @foreach (var item in Model)
+                {
+                                 <a asp-controller="Post" asp-action="Detail" asp-route-id="@item.PostId" class="swiper-slide event-item d-flex flex-column justify-content-end"  >
+              
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-baner-nw2 mb-30">
+                            <div class="banner-img-cap2">
+                                <div class="banner-img">
+                                <img class="img-fluid w-100" src="https://localhost:44377/media/posts/@item.Image" style="object-fit: cover;">
+                                </div>
+                                <div class="banner-cap2">
+                                    <p>@item.PostTitle  @item.CreationDate </p>
+                                   <h3><a href="post_details.html"> @item.Summary</a></h3>
+                                    <p class="blog-text" style="text-transform: normal !important;">Indie folks start out by making something they want to read, that tell stories they want told..</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               
+                </div>
+       
+       
+                
+                    </a>
+                }
+               
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+    </div>
+</section><!-- End Events Section -->
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
