@@ -25,7 +25,7 @@ namespace PublicWebsite.Controllers
         {
 
             //var todaysPosts = context.posts.Include(x=>x.postType).Where(x => x.CreationDate.Day == DateTime.Today.Day).ToList();
-            var recentPosts = context.Posts.Include(x => x.PostType).OrderByDescending(x => x.CreationDate).ToList();
+            var recentPosts =context.Posts.Include(x => x.PostType).OrderByDescending(x => x.CreationDate).ToList();
             var recentSixPosts = new List<Post>();
             for (int i = 0; i < 2; i++)
             {
